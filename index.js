@@ -6,7 +6,7 @@ const bodyParser=require("body-parser")
 const trainRoutes=require('./routes/TrainRoutes')
 const app=express()
 
-const PORT=4000;
+const PORT=process.env.PORT || 4000;
 dotEnv.config()
 mongoose.connect(process.env.MONGO_URL)
     .then(()=>console.log("MongoDB connected successfully"))
@@ -18,6 +18,6 @@ app.use("/train",trainRoutes)
 app.listen(PORT,()=>{
     console.log(`Server is started and running at ${PORT}`)
 })
-app.use(`/home`,(req,res)=>{
+app.use(`/`,(req,res)=>{
     res.send("<h1>Welcome to IRCTC Assignment")
 })
